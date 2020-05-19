@@ -22,6 +22,11 @@ env:
   matrix:
     - ROS_REPO=ros ROS_DISTRO="melodic"
     - ROS_REPO=testing ROS_DISTRO="melodic"
+    - ROS_REPO="testing" ROS_DISTRO="melodic"
+      CATKIN_LINT=false NOT_TEST_BUILD=true
+      AFTER_SCRIPT="./.coverage.sh"
+      CMAKE_ARGS="-DENABLE_COVERAGE_TESTING=ON -DCMAKE_BUILD_TYPE=Debug"
+      DOCKER_RUN_OPTS='-e COVERAGE_PKGS="psen_scan"'
     - ROS_REPO=ros ROS_DISTRO="kinetic"
     - ROS_REPO=testing ROS_DISTRO="kinetic"
     - CLANG_FORMAT_CHECK=file
